@@ -12,10 +12,16 @@ class ModelSyncState extends Model
     use HasFactory;
 
     protected $fillable = [
+        'syncable_id',
+        'syncable_type',
         'source',
         'client_generated_id',
-        'last_synced_at',
         'device_id',
+        'last_synced_at'
+    ];
+
+    protected $casts = [
+        'last_synced_at' => 'datetime',
     ];
 
     public function syncable(): MorphTo
