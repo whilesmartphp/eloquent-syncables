@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32f419be9c1d8385787c3d1f01211042",
+    "content-hash": "41dc82431e56d239bd1c58b2d76829ef",
     "packages": [
         {
             "name": "brick/math",
@@ -5810,62 +5810,6 @@
                 }
             ],
             "time": "2026-04-26T05:33:54+00:00"
-        },
-        {
-            "name": "whilesmart/eloquent-files",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/whilesmartphp/eloquent-files.git",
-                "reference": "aea55ece5671dc8782ed7ec24cb5d2a41e916cdf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/whilesmartphp/eloquent-files/zipball/aea55ece5671dc8782ed7ec24cb5d2a41e916cdf",
-                "reference": "aea55ece5671dc8782ed7ec24cb5d2a41e916cdf",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^11.0|^12.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "fakerphp/faker": "^1.24",
-                "laravel/pint": "^1.0",
-                "laravel/sanctum": "^4.0",
-                "nunomaduro/collision": "^8.0",
-                "orchestra/testbench": "^9.0|^10.0",
-                "zircote/swagger-php": "^5.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Whilesmart\\Files\\FilesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Whilesmart\\Files\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "WhileSmart",
-                    "email": "engineering@whilesmart.com"
-                }
-            ],
-            "description": "File upload and management package for Laravel applications",
-            "support": {
-                "issues": "https://github.com/whilesmartphp/eloquent-files/issues",
-                "source": "https://github.com/whilesmartphp/eloquent-files/tree/v1.0.0"
-            },
-            "time": "2026-02-03T09:54:27+00:00"
         }
     ],
     "packages-dev": [

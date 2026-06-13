@@ -12,8 +12,7 @@
   ],
   "require": {
     "php": "^8.4",
-    "laravel/framework": "^12.0",
-    "whilesmart/eloquent-files": "^1.0"
+    "laravel/framework": "^12.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^11.0",
