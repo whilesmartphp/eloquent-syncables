@@ -9,8 +9,13 @@ return new class () extends Migration {
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('device_identifier')->unique();
+            $table->string('name')->nullable();
+            $table->string('deviceable_type');
+            $table->unsignedBigInteger('deviceable_id');
+            $table->enum('type', ['mobile', 'web', 'desktop'])->default('mobile');
+            $table->string('token')->unique();
+            $table->string('identifier')->nullable();
+            $table->string('platform')->nullable();
             $table->timestamps();
         });
     }

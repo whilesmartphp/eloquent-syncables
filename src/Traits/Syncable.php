@@ -48,14 +48,22 @@ trait Syncable
                 [$deviceIdentifier, $randomId] = $parts;
             }
 
-            $device = \Whilesmart\UserDevices\Models\Device::where('device_identifier', $deviceIdentifier)->first();
+            $deviceableType = $user instanceof Model ? $user->getMorphClass() : $user::class;
+
+            $device = \Whilesmart\UserDevices\Models\Device::where('identifier', $deviceIdentifier)->first();
             if (! $device) {
                 $device = \Whilesmart\UserDevices\Models\Device::create([
-                    'user_id' => $user->getAuthIdentifier(),
-                    'device_identifier' => $deviceIdentifier,
+                    'deviceable_type' => $deviceableType,
+                    'deviceable_id' => $user->getAuthIdentifier(),
+                    'identifier' => $deviceIdentifier,
+                    'token' => $deviceToken ?? $deviceIdentifier,
                 ]);
-            } elseif ($device->user_id !== $user->getAuthIdentifier()) {
-                $device->user_id = $user->getAuthIdentifier();
+            } elseif (
+                $device->deviceable_id !== $user->getAuthIdentifier()
+                || $device->deviceable_type !== $deviceableType
+            ) {
+                $device->deviceable_id = $user->getAuthIdentifier();
+                $device->deviceable_type = $deviceableType;
                 $device->save();
             }
         }
@@ -74,7 +82,7 @@ trait Syncable
 
     public function getClientGeneratedIdAttribute(): ?string
     {
-        $deviceIdentifier = $this->syncState?->device?->device_identifier;
+        $deviceIdentifier = $this->syncState?->device?->identifier;
         $clientId = $this->syncState?->client_generated_id;
         if ($deviceIdentifier && $clientId) {
             return $deviceIdentifier . ':' . $clientId;
