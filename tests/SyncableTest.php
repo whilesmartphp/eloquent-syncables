@@ -7,7 +7,8 @@ namespace Whilesmart\UserDevices\Models {
         class Device extends Model
         {
             protected $table = 'devices';
-            protected $fillable = ['user_id', 'device_identifier'];
+
+            protected $fillable = ['name', 'deviceable_type', 'deviceable_id', 'type', 'token', 'identifier', 'platform'];
         }
     }
 }
@@ -79,8 +80,9 @@ namespace Whilesmart\Syncables\Tests {
 
             // Check if device was created
             $this->assertDatabaseHas('devices', [
-                'user_id' => $user->id,
-                'device_identifier' => $deviceToken,
+                'deviceable_type' => User::class,
+                'deviceable_id' => $user->id,
+                'identifier' => $deviceToken,
             ]);
 
             // Check sync state
@@ -115,8 +117,9 @@ namespace Whilesmart\Syncables\Tests {
 
             // Check if device was created
             $this->assertDatabaseHas('devices', [
-                'user_id' => $user->id,
-                'device_identifier' => $deviceToken,
+                'deviceable_type' => User::class,
+                'deviceable_id' => $user->id,
+                'identifier' => $deviceToken,
             ]);
 
             // Check sync state
@@ -154,8 +157,9 @@ namespace Whilesmart\Syncables\Tests {
             $post->setClientGeneratedId($clientGeneratedId, $user1, $deviceToken);
 
             $this->assertDatabaseHas('devices', [
-                'user_id' => $user1->id,
-                'device_identifier' => $deviceToken,
+                'deviceable_type' => User::class,
+                'deviceable_id' => $user1->id,
+                'identifier' => $deviceToken,
             ]);
 
             // Set again with user2
@@ -163,8 +167,9 @@ namespace Whilesmart\Syncables\Tests {
 
             // Device owner should have updated to user2
             $this->assertDatabaseHas('devices', [
-                'user_id' => $user2->id,
-                'device_identifier' => $deviceToken,
+                'deviceable_type' => User::class,
+                'deviceable_id' => $user2->id,
+                'identifier' => $deviceToken,
             ]);
         }
     }
