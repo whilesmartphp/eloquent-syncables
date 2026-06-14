@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->timestamps();
 
             if (class_exists('\Whilesmart\UserDevices\Models\Device')) {
-                $table->foreign('device_id')->references('id')->on(config('user-devices.db_table_name'))->onDelete('cascade');
+                $table->foreign('device_id')->references('id')->on(config('user-devices.db_table_name', 'devices'))->onDelete('cascade');
             }
             $table->unique(['syncable_type', 'syncable_id', 'device_id', 'client_generated_id'], 'sync_unique');
         });
